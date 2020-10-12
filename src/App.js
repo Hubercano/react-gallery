@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import {Galeria, Header, Footer} from './componentes'
 
-function App() {
+class App extends Component {
+  constructor(){
+    super()
+    this.refHeader = React.createRef()
+    this.state = {
+      altoHeader: 0,
+    }
+  }
+
+  componentDidMount () {
+    this.setState({
+      altoHeader: this.refHeader.current.clientHeight
+    })
+  }
+
+  render() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <div className="global">
+        <Header refHeader={this.refHeader}/>
+        <Galeria altoHeader={this.state.altoHeader}/>
+        <Footer/>
+      </div>
+    )
+  }
 }
 
 export default App;
+  
