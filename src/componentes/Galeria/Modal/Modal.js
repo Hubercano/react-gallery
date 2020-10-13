@@ -5,20 +5,18 @@ class Modal extends Component {
     render () {
 
         if (Object.keys(this.props.imagenClick).length == 0){
-            return ReactDOM.createPortal((
-                <div>
-                    <h1>fff</h1>
-                </div>
-            ), document.getElementById('modal'))
-        }else{
-            return ReactDOM.createPortal((
-                <div>
-                    <img
-                        src={this.props.imagenClick.author.avatar}
-                    />
-                </div>
-            ), document.getElementById('modal'))
+            return (
+                null
+            )
         }
+        
+        return ReactDOM.createPortal((
+            <div>
+                <img
+                    src={this.props.imagenClick.imagen}
+                />
+            </div>
+        ), document.getElementById('modal'))
 
         
     }
