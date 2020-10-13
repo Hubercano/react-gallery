@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
 import GaleriaItem from './GaleriaItem/GaleriaItem'
+import Modal from './Modal/Modal'
 import './Galeria.css'
 
 const images = [
@@ -87,24 +87,18 @@ const images = [
     },
 ]
 
-class PortalModal extends Component {
-    render () {
-
-        if (!this.props.visible){
-            return null
-        }
-
-        return ReactDOM.createPortal((
-            <div>
-                {this.props.children}
-            </div>
-        ), document.getElementById('modal'))
-    }
-}
-
 class Galeria extends Component {
+    state = {
+        imagenClick: {}
+    }
+
+    select = (imagenClick) => {
+        this.setState({
+            imagenClick
+        })
+    }
+
     render() {
-        console.log(this.props)
         return(
             <main style={{
                 paddingTop: this.props.altoHeader
@@ -114,12 +108,12 @@ class Galeria extends Component {
                         <GaleriaItem 
                             image={image}
                             key={image.id}
+                            imagenClick={this.state.imagenClick}
+                            event={this.select}
                         />
                     ))}
                 </div>
-                <PortalModal visible={true}>
-                    <h1>hola sdfghgedfgfdfgh</h1>
-                </PortalModal>
+                <Modal imagenClick={this.state.imagenClick}/>
             </main>
         )
     }
