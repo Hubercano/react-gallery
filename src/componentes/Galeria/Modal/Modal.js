@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import './Modal.css'
 
 class Modal extends Component {
     render () {
 
-        if (Object.keys(this.props.imagenClick).length == 0){
+        if (!this.props.visible){
             return (
                 null
             )
@@ -12,9 +13,25 @@ class Modal extends Component {
         
         return ReactDOM.createPortal((
             <div>
-                <img
-                    src={this.props.imagenClick.imagen}
-                />
+                <div 
+                    className="fondo-modal" 
+                    onClick={this.props.cerrar}
+                ></div>
+                <div className="cont-modal">
+                    <div 
+                        className="cerrar-modal"
+                        onClick={this.props.cerrar}
+                    >x</div>
+                    <img
+                        src={this.props.imagenClick.imagen}
+                    />
+                    <div className="autor-modal">
+                        <img
+                            src={this.props.imagenClick.author.avatar}
+                        />
+                        <h4>{this.props.imagenClick.author.name}</h4>
+                    </div>
+                </div>
             </div>
         ), document.getElementById('modal'))
 

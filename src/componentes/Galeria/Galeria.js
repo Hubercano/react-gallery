@@ -89,16 +89,23 @@ const images = [
 
 class Galeria extends Component {
     state = {
-        imagenClick: {}
+        imagenClick: {},
+        visible: false
+    }
+
+    cerrar = () => {
+        this.setState({ visible: false })
     }
 
     select = (imagenClick) => {
         this.setState({
             imagenClick
         })
+        this.setState({ visible: true })
     }
 
     render() {
+        console.log(this.state.visible)
         return(
             <main style={{
                 paddingTop: this.props.altoHeader
@@ -113,7 +120,11 @@ class Galeria extends Component {
                         />
                     ))}
                 </div>
-                <Modal imagenClick={this.state.imagenClick}/>
+                <Modal 
+                    imagenClick={this.state.imagenClick}
+                    visible={this.state.visible}
+                    cerrar={this.cerrar}
+                />
             </main>
         )
     }
