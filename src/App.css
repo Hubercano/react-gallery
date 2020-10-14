@@ -4,3 +4,13 @@
     list-style: none;
     text-decoration: none;
 }
+
+#root {
+    z-index: 1;
+    position: relative;
+}
+
+#modal {
+    z-index: 2;
+    position: relative;
+}
